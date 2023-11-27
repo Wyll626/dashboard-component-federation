@@ -10,7 +10,7 @@ const router = Router();
 router.get(
   "/healthcheck",
   asyncHandler(async (req: Request, res: Response, next: NextFunction) => {
-    res.json({ status: "ok" });
+    res.json({ status: "blabla" });
   })
 );
 
@@ -26,7 +26,7 @@ api.use(async (req, res) => {
   } else if (req.accepts("json")) {
     res.status(404).json({ message: "Not found" });
   } else if (req.accepts("txt")) {
-    res.status(404).type("txt").send("Not found");
+    res.status(404).type("txt").send("blabla");
   } else {
     res.status(404).end();
   }

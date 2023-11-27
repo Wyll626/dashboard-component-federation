@@ -1,9 +1,17 @@
 import { defineConfig } from "vite";
 import { params } from "@ampt/sdk";
 import react from "@vitejs/plugin-react-swc";
+import federation from "@originjs/vite-plugin-federation";
 
 export default defineConfig({
-  plugins: [react()],
+  plugins: [react(), federation({
+    name: 'remote-app',
+    filename: 'remoteEntry.js',
+    // Modules to expose
+    exposes: {
+        './Button': './src/Button.tsx',
+    },
+})],
   server: {
     open: true,
     port: process.env.PORT ? parseInt(process.env.PORT) : 3001,
@@ -26,3 +34,4 @@ export default defineConfig({
     },
   },
 });
+
